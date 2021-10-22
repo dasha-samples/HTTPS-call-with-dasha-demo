@@ -1,8 +1,5 @@
-context 
-{
+context {
     input phone: string;
-
-    fruit: string = "";
 }
 
 // declare external functions here 
@@ -47,16 +44,13 @@ digression status {
 
 node confirm {
     do {
-        set $fruit = #messageGetData("fruit", { value: true })[0]?.value??"";
-        #log($fruit);
-        var response = external confirm($fruit);
-        if (response)
-        {
+        var fruit = #messageGetData("fruit", { value: true })[0]?.value??"";
+        var response = external confirm(fruit);
+        if (response) {
             #sayText("Great, identity confirmed. Let me just check your status. ");
             goto approved;
         }
-        else 
-        {
+        else {
             #sayText("I'm sorry but your identity is not confirmed. Let's try again. What is your favourite fruit?");
             wait *;
         }
