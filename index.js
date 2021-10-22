@@ -1,9 +1,7 @@
 const dasha = require("@dasha.ai/sdk");
 const fs = require("fs");
 const axios = require("axios").default;
-const bodyParser = require("body-parser");
 
-require("dotenv").config();
 
 async function main() {
   const app = await dasha.deploy("./app");
@@ -33,6 +31,7 @@ async function main() {
       return false; 
   });
 
+  // External function check status 
   app.setExternal("status", async(args, conv) => {
 
     const res = await axios.post( "http://ptsv2.com/t/dasha-test/post");
