@@ -84,4 +84,7 @@ async function main() {
   await logFile.close();
 }
 
-main().catch(() => {});
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
